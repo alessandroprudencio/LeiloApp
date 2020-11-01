@@ -1,0 +1,19 @@
+{
+    "vetur.format.defaultFormatter.js": "prettier",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "vetur.validation.template": false,
+    "editor.wordWrap": "on",    
+    "eslint.validate": [
+        "vue",
+        "html",
+        "javascript"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+}

@@ -1,5 +1,12 @@
 {
   "defaultCommandTimeout": 4000,
   "pageLoadTimeout": 40000,
-  "baseUrl": "http://localhost:3000/"
+  "baseUrl": "http://localhost:3000/",
+  "fileServerFolder":"tests",
+  "integrationFolder":"tests/integration",
+  "pluginsFile":"tests/plugins/index.js",
+  "screenshotsFolder":"tests/screenshots",
+  "supportFile":"tests/support/index.js",
+  "videosFolder":"tests/videos",
+  "fixturesFolder":"tests/fixtures"
 }

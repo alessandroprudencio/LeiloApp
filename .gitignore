@@ -35,8 +35,8 @@ bower_components
 build/Release
 
 # Tests
-cypress/videos/
-cypress/screenshots/
+tests/videos/
+tests/screenshots/
 
 
 # Dependency directories

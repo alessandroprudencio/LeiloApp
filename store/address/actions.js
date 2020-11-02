@@ -38,7 +38,8 @@ const actions = {
 
     if (addressStorage) {
       const adresses = JSON.parse(addressStorage)
-      localStorage.setItem('adresses', JSON.stringify(adresses.push(payload)))
+      adresses.push(payload)
+      localStorage.setItem('adresses', JSON.stringify(adresses))
     } else {
       localStorage.setItem('adresses', JSON.stringify([payload]))
     }

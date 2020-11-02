@@ -2,7 +2,7 @@
   <div>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-row>
-        <v-col cols="6" md="6">
+        <v-col class="pb-0" cols="6" md="6">
           <v-text-field
             v-model="address.cep"
             v-mask="'##.###-###'"
@@ -14,7 +14,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-col cols="2" md="2">
+        <v-col class="pb-0" cols="2" md="2">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-bind="attrs" large color="blue-grey" class="ma-2 white--text" v-on="on" @click="actionGetLocation">
@@ -26,7 +26,7 @@
           </v-tooltip>
         </v-col>
 
-        <v-col cols="12" md="12">
+        <v-col class="pt-0 pb-0" cols="12" md="12">
           <v-text-field
             v-model="address.address"
             :rules="[(v) => !!v || 'O logradouro é obrigatório']"
@@ -36,7 +36,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-col cols="12" md="12">
+        <v-col cols="12" md="12" class="pt-0 pb-0">
           <v-text-field
             v-model="address.number"
             :rules="[(v) => !!v || 'O número é obrigatório']"
@@ -45,11 +45,11 @@
             data-cy="number"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" md="12">
+        <v-col cols="12" md="12" class="pt-0 pb-0">
           <v-text-field v-model="address.complement" data-cy="complement" label="Complemento"></v-text-field>
         </v-col>
 
-        <v-col cols="12" md="12">
+        <v-col cols="12" md="12" class="pt-0 pb-0">
           <v-select
             v-model="address.state"
             :items="states"
@@ -62,7 +62,7 @@
           ></v-select>
         </v-col>
 
-        <v-col cols="12" md="12">
+        <v-col cols="12" md="12" class="pt-0 pb-0">
           <v-select
             v-model="address.city"
             :items="cities"
@@ -76,7 +76,7 @@
           ></v-select>
         </v-col>
 
-        <v-col cols="12" md="12">
+        <v-col cols="12" md="12" class="pt-0 pb-0">
           <v-btn color="error" class="mr-4" @click="reset"> Cancelar </v-btn>
           <v-btn :disabled="!valid" color="success" class="mr-4" data-cy="btnSave" @click="save">
             {{ $route.params.id ? 'Editar ' : 'Cadastrar' }}

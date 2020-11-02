@@ -52,27 +52,30 @@
 
 <script>
 export default {
+  middleware({ route, redirect }) {
+    if (route.path === '/') return redirect('/address')
+  },
   data() {
     return {
       clipped: false,
-      drawer: false,
+      drawer: true,
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-clipboard-list-outline',
+          title: 'Endereços',
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          icon: 'mdi-plus',
+          title: 'Cadastrar',
+          to: '/create',
         },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js',
+      title: 'LeiloApp',
     }
   },
 }

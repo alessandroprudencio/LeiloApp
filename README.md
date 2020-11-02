@@ -3,6 +3,7 @@
 Implementar uma aplicação client-side onde será possível armazenar uma lista de endereços. Deverá ser
 possível realizar as operações de CRUD. Esta lista deverá ser salva no LocalStorage do navegador, e se o
 usuário sair da página e voltar, a lista deverá ser recuperada do LocalStorage. 
+ <!-- <img width="790"  src="https://github.com/alessandroprudencio/My-Lung/blob/master/preview_system.gif" /> -->
 
 ## Vamos começar!
 

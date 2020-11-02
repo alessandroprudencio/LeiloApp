@@ -69,9 +69,26 @@ const actions = {
 
   actionDeleteAddress({ commit }, payload) {
     const addressStorage = JSON.parse(localStorage.adresses)
-    addressStorage.splice(addressStorage.indexOf(payload.id), 1)
+
+    addressStorage.splice(
+      addressStorage.findIndex((item) => item.id === payload),
+      1
+    )
     localStorage.setItem('adresses', JSON.stringify(addressStorage))
     commit('SET_ADRESSES', addressStorage)
+  },
+
+  async actionGetAddressByLocation({ state }, { lat, lng }) {
+    const resp = await axios.get(
+      `https://eu1.locationiq.com/v1/reverse.php?key=${process.env.locationiqkEY}&lat=${lat}&lon=${lng}&format=json`
+    )
+    const { address } = resp.data
+    return {
+      cep: address.postcode,
+      state: state.states.find((item) => item.nome === address.state).sigla,
+      city: address.city,
+      address: address.road,
+    }
   },
 }
 

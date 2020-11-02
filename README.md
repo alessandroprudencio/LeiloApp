@@ -66,6 +66,9 @@ Pronto sua aplicação estará  rodando...
 * [NPM](https://www.npmjs.com/)
 * [Yarn](https://yarnpkg.com/)
 * [Vuejs](https://vuejs.org/)
+* [LocationIQ](https://my.locationiq.com/)
+* [ViaCEP](https://viacep.com.br/)
+
 
 ## Contribuição
 

@@ -18,7 +18,7 @@
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon color="blue" class="mr-2" @click="$router.push(`/${item.id}`)"> mdi-pencil </v-icon>
+        <v-icon color="blue" class="mr-2" @click="$router.push(`address/${item.id}`)"> mdi-pencil </v-icon>
         <v-icon color="red" @click="showDelete(item)"> mdi-delete </v-icon>
       </template>
     </v-data-table>

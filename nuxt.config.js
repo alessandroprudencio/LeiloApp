@@ -39,6 +39,7 @@ export default {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     CORS: 'https://cors-anywhere.herokuapp.com/',
+    locationiqkEY: 'pk.674a77b04a552ca509b48814730d63ba',
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)

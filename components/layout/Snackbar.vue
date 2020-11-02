@@ -20,11 +20,11 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Snackbar',
-  methods: {
-    ...mapActions('address', ['actionSetSnackbar']),
-  },
   computed: {
     ...mapState('address', ['snackbar']),
+  },
+  methods: {
+    ...mapActions('address', ['actionSetSnackbar']),
   },
 }
 </script>

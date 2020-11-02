@@ -14,7 +14,7 @@
         <v-toolbar flat color="transparent">
           <v-toolbar-title></v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn color="primary" dark class="mb-2" to="create"> <v-icon>mdi mdi-plus</v-icon> Cadastrar </v-btn>
+          <v-btn color="primary" dark class="mb-2" to="address/create"> <v-icon>mdi mdi-plus</v-icon> Cadastrar </v-btn>
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">

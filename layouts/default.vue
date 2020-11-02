@@ -52,7 +52,9 @@ import Snackbar from '~/components/layout/Snackbar'
 export default {
   name: 'Default',
   components: { Snackbar },
-
+  middleware({ route, redirect }) {
+    if (route.path === '/') return redirect('/address')
+  },
   data() {
     return {
       clipped: false,
@@ -67,7 +69,7 @@ export default {
         {
           icon: 'mdi-plus',
           title: 'Cadastrar',
-          to: '/create',
+          to: '/address/create',
         },
       ],
       miniVariant: false,

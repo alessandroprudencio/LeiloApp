@@ -2,8 +2,8 @@
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="10">
       <div class="text-center">
-        <TitlePage name="Criar de Endereços" />
-        <AddressList />
+        <TitlePage name="Cadastro de Endereço" />
+        <AddressForm />
       </div>
     </v-col>
   </v-row>
@@ -11,12 +11,12 @@
 
 <script>
 import TitlePage from '~/components/layout/TitlePage.vue'
-import AddressList from '~/components/address/AddressList.vue'
+import AddressForm from '~/components/address/AddressForm.vue'
 
 export default {
   components: {
     TitlePage,
-    AddressList,
+    AddressForm,
   },
 }
 </script>

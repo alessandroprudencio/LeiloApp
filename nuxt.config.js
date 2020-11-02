@@ -36,6 +36,11 @@ export default {
     '@nuxtjs/pwa',
   ],
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    CORS: 'https://cors-anywhere.herokuapp.com/',
+  },
+
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

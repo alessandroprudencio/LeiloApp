@@ -14,12 +14,12 @@
         <v-toolbar flat color="transparent">
           <v-toolbar-title></v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn color="primary" dark class="mb-2" to="address/create"> <v-icon>mdi mdi-plus</v-icon> Cadastrar </v-btn>
+          <v-btn color="primary" dark class="mb-2" to="/address/create"> <v-icon>mdi mdi-plus</v-icon> Cadastrar </v-btn>
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon color="blue" class="mr-2" @click="$router.push(`address/${item.id}`)"> mdi-pencil </v-icon>
-        <v-icon color="red" @click="showDelete(item)"> mdi-delete </v-icon>
+        <v-icon data-cy="btnEdit" color="blue" class="mr-2" @click="$router.push(`/address/${item.id}`)"> mdi-pencil </v-icon>
+        <v-icon data-cy="btnDelete" color="red" @click="showDelete(item)"> mdi-delete </v-icon>
       </template>
     </v-data-table>
     <div v-if="adresses.length > itemsPerPage" class="text-center pt-2">

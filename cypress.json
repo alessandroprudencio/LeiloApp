@@ -1,4 +1,5 @@
 {
   "defaultCommandTimeout": 4000,
-  "pageLoadTimeout": 40000
+  "pageLoadTimeout": 40000,
+  "baseUrl": "http://localhost:3000/"
 }

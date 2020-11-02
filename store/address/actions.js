@@ -9,13 +9,13 @@ const actions = {
       setTimeout(async () => {
         try {
           const resp = (await axios.get(`${process.env.CORS}https://viacep.com.br/ws/${cepFormatted}/json`)).data
-          if (resp.erro) reject(new Error(`O número do CEP é inválido, verifique se o número está preenchido corretamente.`()))
+          if (resp.erro) reject(new Error(`O número do CEP é inválido, verifique se o número está preenchido corretamente.`))
           commit('SET_CEP', resp)
+          resolve()
         } catch (error) {
-          reject(new Error(`O número do CEP é inválido, verifique se o número está preenchido corretamente.`()))
+          reject(new Error(`O número do CEP é inválido, verifique se o número está preenchido corretamente.`))
         }
         commit('SET_PROGRESS', !state.progress)
-        resolve()
       }, 800)
     })
   },

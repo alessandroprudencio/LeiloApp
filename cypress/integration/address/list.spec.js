@@ -10,15 +10,15 @@ const addressData = {
 }
 
 describe('List', () => {
-  it('Verifica se existe  a tabela', () => {
-    cy.visit(`http://localhost:3000/`)
+  it('Verifica se existe a tabela', () => {
+    cy.visit(`address/`)
     cy.get('table').should('exist')
   })
 
-  it('Verifica se os dados no localStorage aparece na tabela', () => {
-    cy.visit(`http://localhost:3000/`).then(() => {
-      cy.clearLocalStorage(/prop1|2/).should((ls) => {
-        ls.setItem('adresses', JSON.stringify([addressData, addressData, addressData]))
+  it('Verifica se os dados no localStorage são exibidos na tabela', () => {
+    cy.clearLocalStorage(/prop1|2/).should((ls) => {
+      ls.setItem('adresses', JSON.stringify([addressData, addressData, addressData]))
+      cy.visit(`address/`).then(() => {
         cy.get('table > tbody').find('tr').should('have.length', 3)
       })
     })

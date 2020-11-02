@@ -98,7 +98,7 @@ export default {
   computed: {
     ...mapState('address', ['cep', 'states', 'cities', 'progress']),
     isEdit() {
-      return this.$route.params.id
+      return this.$route.params.id ? this.$route.params.id : false
     },
   },
   watch: {

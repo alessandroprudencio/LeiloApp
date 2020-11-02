@@ -1,5 +1,6 @@
 import axios from 'axios'
 import generateUuid from '../../helpers/generateUuid'
+import maskCEP from '../../helpers//maskCEP'
 
 const actions = {
   actionGetCEP({ commit, state }, cep) {
@@ -32,12 +33,12 @@ const actions = {
 
   actionRegisterAddress(a = {}, payload) {
     const addressStorage = localStorage.adresses
+
     Object.assign(payload, { id: generateUuid() })
 
     if (addressStorage) {
       const adresses = JSON.parse(addressStorage)
-      adresses.push(payload)
-      localStorage.setItem('adresses', JSON.stringify(adresses))
+      localStorage.setItem('adresses', JSON.stringify(adresses.push(payload)))
     } else {
       localStorage.setItem('adresses', JSON.stringify([payload]))
     }
@@ -84,7 +85,7 @@ const actions = {
     )
     const { address } = resp.data
     return {
-      cep: address.postcode,
+      cep: maskCEP(address.postcode),
       state: state.states.find((item) => item.nome === address.state).sigla,
       city: address.city,
       address: address.road,

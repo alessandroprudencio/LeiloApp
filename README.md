@@ -79,7 +79,7 @@ Comite suas mudanças (git commit -m 'Adicionando uma Feature incrível!)\
 Faça o Push da Branch (git push origin feature/FeatureIncrivel)\
 Abra um Pull Request
 
-## Extensões recomendadas
+## Extensões recomendadas(Vs Code)
 
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 * [Prettier - Code formatter ](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)

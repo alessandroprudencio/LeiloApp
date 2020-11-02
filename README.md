@@ -17,7 +17,7 @@ O que você precisa para instalar o software:
 ```
 node.js ^12.16.3
 yarn
-
+Git
 ```
 
 ### Para começar

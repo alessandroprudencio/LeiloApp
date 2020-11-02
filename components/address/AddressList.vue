@@ -7,19 +7,21 @@
       :items-per-page="itemsPerPage"
       hide-default-footer
       no-data-text="Nenhum endereço cadastrado"
+      no-results-text="Nenhum endereço encontrado"
       class="elevation-1"
+      :search="search"
       @page-count="pageCount = $event"
     >
       <template v-slot:top>
         <v-toolbar flat color="transparent">
-          <v-toolbar-title></v-toolbar-title>
+          <v-text-field v-model="search" append-icon="mdi-magnify" label="Buscar Endereço" single-line hide-details></v-text-field>
           <v-spacer></v-spacer>
           <v-btn color="primary" dark class="mb-2" to="/address/create"> <v-icon>mdi mdi-plus</v-icon> Cadastrar </v-btn>
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon data-cy="btnEdit" color="blue" class="mr-2" @click="$router.push(`/address/${item.id}`)"> mdi-pencil </v-icon>
-        <v-icon data-cy="btnDelete" color="red" @click="showDelete(item)"> mdi-delete </v-icon>
+        <v-icon color="blue" class="mr-2" @click="$router.push(`/address/${item.id}`)"> mdi-pencil </v-icon>
+        <v-icon color="red" @click="showDelete(item)"> mdi-delete </v-icon>
       </template>
     </v-data-table>
     <div v-if="adresses.length > itemsPerPage" class="text-center pt-2">
@@ -39,17 +41,18 @@ export default {
     return {
       dialogDelete: false,
       itemDelete: {},
+      search: '',
       page: 1,
       pageCount: 0,
       itemsPerPage: 10,
       headers: [
-        { text: 'CEP', align: 'left', value: 'cep' },
+        { align: 'left', text: 'CEP', value: 'cep' },
         { align: 'left', text: 'Logradouro', value: 'address' },
         { align: 'left', text: 'Número', value: 'number' },
         { align: 'left', text: 'Complemento', value: 'complement' },
         { align: 'left', text: 'Cidade', value: 'city' },
         { align: 'left', text: 'Estado', value: 'state' },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { align: 'left', text: 'Ações', value: 'actions', sortable: false },
       ],
     }
   },

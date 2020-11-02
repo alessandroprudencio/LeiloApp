@@ -56,7 +56,7 @@ export default {
   computed: {
     ...mapState('address', ['adresses']),
   },
-  async created() {
+  async mounted() {
     await this.actionGetAdresses()
   },
   methods: {

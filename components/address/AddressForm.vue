@@ -106,7 +106,7 @@ export default {
       await this.actionGetCitiesByState(this.address.state)
     },
   },
-  async created() {
+  async mounted() {
     await this.actionGetStates()
     if (this.isEdit) this.address = await this.actionGetAddressById(this.isEdit)
   },
@@ -136,7 +136,9 @@ export default {
     },
     actionGetLocation() {
       navigator.geolocation.getCurrentPosition(async (position) => {
-        this.address = await this.actionGetAddressByLocation({ lng: position.coords.longitude, lat: position.coords.latitude })
+        const newAddress = await this.actionGetAddressByLocation({ lng: position.coords.longitude, lat: position.coords.latitude })
+        this.address = newAddress
+        if (this.isEdit) this.address.id = this.$route.params.id
       })
     },
     async save() {
@@ -154,12 +156,13 @@ export default {
       } catch (error) {
         this.actionSetSnackbar({
           show: true,
-          text: 'Erro ao cadastrar endereço',
+          text: `Erro ao  ${this.isEdit ? 'editar' : 'salvar'} endereço.`,
           type: 'warn',
         })
       }
     },
     reset() {
+      if (this.isEdit) this.$router.push('/address')
       this.$refs.form.reset()
       this.address = {}
     },

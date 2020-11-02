@@ -12,6 +12,20 @@ const addressData = {
   state: 'MS',
 }
 
+function fakeLocation(latitude, longitude) {
+  return {
+    onBeforeLoad(win) {
+      cy.stub(win.navigator.geolocation, 'getCurrentPosition', (cb, err) => {
+        if (latitude && longitude) {
+          // eslint-disable-next-line standard/no-callback-literal
+          return cb({ coords: { latitude, longitude } })
+        }
+        throw err({ code: 1 })
+      })
+    },
+  }
+}
+
 describe('Form', () => {
   it('Verifica se existe os campos do formulario', () => {
     cy.visit('/address/create')
@@ -24,12 +38,9 @@ describe('Form', () => {
   })
 
   it('Valida botão `NÃO SEI MEU CEP` ', () => {
+    cy.visit('/address/create', fakeLocation(-20.4210148, -54.5812235))
     cy.get('[data-cy=btnNotknowCEP]').type(cepInvalid, { force: true }).click()
-
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(3000)
-
-    cy.get('[data-cy=cep]').should('not.have.value')
+    cy.get('[data-cy=cep]').invoke('val').should('not.be.empty') // works in the same way.
   })
 
   it('Valida retorno de endereço inválido ', () => {

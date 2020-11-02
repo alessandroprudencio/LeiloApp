@@ -23,6 +23,15 @@ describe('Form', () => {
     cy.get('[data-cy=city]').should('exist')
   })
 
+  it('Valida botão `NÃO SEI MEU CEP` ', () => {
+    cy.get('[data-cy=btnNotknowCEP]').type(cepInvalid, { force: true }).click()
+
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(3000)
+
+    cy.get('[data-cy=cep]').should('not.have.value')
+  })
+
   it('Valida retorno de endereço inválido ', () => {
     cy.visit('/address/create').then(() => {
       cy.get('[data-cy=cep]').invoke('val', '')
@@ -54,7 +63,6 @@ describe('Form', () => {
 
       cy.clearLocalStorage(/prop1|2/).should((ls) => {
         expect(ls.length).to.be.greaterThan(0)
-        // expect(JSON.parse(ls.adresses)[0]).to.deep.equal(addressData)
       })
     })
   })

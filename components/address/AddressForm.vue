@@ -17,7 +17,15 @@
         <v-col class="pb-0" cols="2" md="2">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" large color="blue-grey" class="ma-2 white--text" v-on="on" @click="actionGetLocation">
+              <v-btn
+                data-cy="btnNotknowCEP"
+                v-bind="attrs"
+                large
+                color="blue-grey"
+                class="ma-2 white--text"
+                v-on="on"
+                @click="actionGetLocation"
+              >
                 <v-icon left dark> mdi mdi-map-marker </v-icon>
                 Não sei meu cep
               </v-btn>

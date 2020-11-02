@@ -5,12 +5,10 @@ const actions = {
   actionGetCEP({ commit, state }, cep) {
     return new Promise((resolve, reject) => {
       commit('SET_PROGRESS', !state.progress)
-
-      const cepFormated = cep.replace(/[^\d]+/g, '')
-
+      const cepFormatted = cep.replace(/[^\d]+/g, '')
       setTimeout(async () => {
         try {
-          const resp = (await axios.get(`${process.env.CORS}https://viacep.com.br/ws/${cepFormated}/json`)).data
+          const resp = (await axios.get(`${process.env.CORS}https://viacep.com.br/ws/${cepFormatted}/json`)).data
           if (resp.erro) reject(new Error(`O número do CEP é inválido, verifique se o número está preenchido corretamente.`()))
           commit('SET_CEP', resp)
         } catch (error) {
@@ -73,6 +71,7 @@ const actions = {
     const addressStorage = JSON.parse(localStorage.adresses)
     addressStorage.splice(addressStorage.indexOf(payload.id), 1)
     localStorage.setItem('adresses', JSON.stringify(addressStorage))
+    commit('SET_ADRESSES', addressStorage)
   },
 }
 

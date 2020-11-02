@@ -35,9 +35,6 @@ import ModalDelete from '../layout/ModalDelete'
 
 export default {
   components: { ModalDelete },
-  async fetch() {
-    await this.actionGetAdresses()
-  },
   data() {
     return {
       dialogDelete: false,
@@ -59,12 +56,14 @@ export default {
   computed: {
     ...mapState('address', ['adresses']),
   },
+  async created() {
+    await this.actionGetAdresses()
+  },
   methods: {
     ...mapActions('address', ['actionGetAdresses', 'actionDeleteAddress', 'actionSetSnackbar']),
     async deleteAddress(item) {
       this.dialogDelete = !this.dialogDelete
       await this.actionDeleteAddress(item.id)
-      await this.actionGetAdresses()
       this.actionSetSnackbar({ show: true, text: 'Endereço excluido com sucesso.', type: 'success' })
     },
     showDelete(item) {

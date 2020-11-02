@@ -49,7 +49,7 @@ yarn build
 yarn start
 ```
 
-para rodar os testes use o seguinte comando :
+para rodar os testes, é necessario que o frontend ja esteja rodando, segue o comando :
 
 ```
 yarn test

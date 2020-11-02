@@ -11,12 +11,12 @@ const addressData = {
 
 describe('List', () => {
   it('Verifica se existe  a tabela', () => {
-    cy.visit('/')
+    cy.visit(`http://localhost:3000/`)
     cy.get('table').should('exist')
   })
 
   it('Verifica se os dados no localStorage aparece na tabela', () => {
-    cy.visit('/').then(() => {
+    cy.visit(`http://localhost:3000/`).then(() => {
       cy.clearLocalStorage(/prop1|2/).should((ls) => {
         ls.setItem('adresses', JSON.stringify([addressData, addressData, addressData]))
         cy.get('table > tbody').find('tr').should('have.length', 3)

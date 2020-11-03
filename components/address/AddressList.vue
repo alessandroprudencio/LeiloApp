@@ -33,7 +33,7 @@
 
 <script>
 import ModalDelete from '../layout/ModalDelete'
-import AddressList from './AddressList'
+import AddressList from './AddressList.js'
 
 export default {
   components: { ModalDelete },

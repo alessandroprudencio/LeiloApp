@@ -96,84 +96,29 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import AddressForm from './AddressForm.js'
 
 export default {
-  data: () => ({
-    address: { address: '' },
-    valid: true,
-  }),
-  computed: {
-    ...mapState('address', ['cep', 'states', 'cities', 'progress']),
-    isEdit() {
-      return this.$route.params.id ? this.$route.params.id : false
-    },
-  },
-  watch: {
-    async 'address.state'() {
-      await this.actionGetCitiesByState(this.address.state)
-    },
-  },
-  async mounted() {
-    await this.actionGetStates()
-    if (this.isEdit) this.address = await this.actionGetAddressById(this.isEdit)
-  },
-  methods: {
-    ...mapActions('address', [
-      'actionGetCEP',
-      'actionGetStates',
-      'actionGetCitiesByState',
-      'actionRegisterAddress',
-      'actionGetAddressById',
-      'actionEditAddress',
-      'actionSetSnackbar',
-      'actionGetAddressByLocation',
-    ]),
-    async searchCEP() {
-      try {
-        await this.actionGetCEP(this.address.cep)
-        const { logradouro, uf, localidade, complemento } = this.cep
-        this.address.address = logradouro
-        this.address.state = uf
-        this.address.city = localidade
-        this.address.complement = complemento
-      } catch (error) {
-        this.actionSetSnackbar({ show: true, text: error, type: 'error' })
-        this.valid = false
-      }
-    },
-    actionGetLocation() {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const newAddress = await this.actionGetAddressByLocation({ lng: position.coords.longitude, lat: position.coords.latitude })
-        this.address = newAddress
-        if (this.isEdit) this.address.id = this.$route.params.id
-      })
-    },
-    async save() {
-      if (!this.$refs.form.validate()) return
-
-      try {
-        if (this.isEdit) {
-          await this.actionEditAddress(this.address)
-          this.$router.push('/')
-        } else {
-          await this.actionRegisterAddress(this.address)
-          this.$refs.form.reset()
-        }
-        this.actionSetSnackbar({ show: true, text: `Endereço ${this.isEdit ? 'editado' : 'cadastrado'} com sucesso!`, type: 'success' })
-      } catch (error) {
-        this.actionSetSnackbar({
-          show: true,
-          text: `Erro ao  ${this.isEdit ? 'editar' : 'salvar'} endereço.`,
-          type: 'warn',
-        })
-      }
-    },
-    reset() {
-      if (this.isEdit) this.$router.push('/address')
-      this.$refs.form.reset()
-      this.address = {}
-    },
+  setup(props, { root: { $store, $route, $router }, refs }) {
+    const { actionGetLocation, reset, address, isEdit, save, searchCEP, valid, cep, states, cities, progress } = AddressForm(
+      $store,
+      $route,
+      refs,
+      $router
+    )
+    return {
+      actionGetLocation,
+      reset,
+      isEdit,
+      address,
+      save,
+      searchCEP,
+      valid,
+      cep,
+      states,
+      cities,
+      progress,
+    }
   },
 }
 </script>

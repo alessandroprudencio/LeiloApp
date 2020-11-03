@@ -40,7 +40,7 @@ describe('Form', () => {
   it('Valida botão `NÃO SEI MEU CEP` ', () => {
     cy.visit('/address/create', fakeLocation(-20.4210148, -54.5812235))
     cy.get('[data-cy=btnNotknowCEP]').type(cepInvalid, { force: true }).click()
-    cy.get('[data-cy=cep]').invoke('val').should('not.be.empty') // works in the same way.
+    cy.get('[data-cy=cep]').should('have.value', '')
   })
 
   it('Valida retorno de endereço inválido ', () => {
